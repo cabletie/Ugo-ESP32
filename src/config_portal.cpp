@@ -123,6 +123,10 @@ String processor(const String &var)
     {
         return json["ha_prefix"].as<const char *>();
     }
+    else if (var == "HA_EXPAFT")
+    {
+        return String(json["ha_expaft"].as<int>());
+    }
 
     // Return empty string as a default
     return String();
@@ -197,6 +201,13 @@ void handleRoot(AsyncWebServerRequest *request)
         {
             json["ha_enabled"] = false;
             Serial.println("Did not receive arg=ha_enabled.");
+        }
+
+        // Expire After needs special handling as an int
+        if (request->hasArg("ha_expaft"))
+        {
+            json["ha_expaft"] = (request->arg("ha_expaft")).toInt();
+            Serial.println("Received arg=ha_expaft: " + request->arg("ha_expaft"));
         }
 
         saveConfig();

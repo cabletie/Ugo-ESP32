@@ -27,6 +27,7 @@ void startHassRegister()
     const char *ha_broker = json["ha_broker"].as<const char *>();
     int ha_port = json["ha_port"].as<int>();
     const char *ha_prefix = json["ha_prefix"].as<const char *>();
+    int ha_expaft = json["ha_expaft"].as<int>();
 
 #if CORE_DEBUG_LEVEL == 5
     Serial.println("[ha_user]: " + String(ha_user));
@@ -34,6 +35,7 @@ void startHassRegister()
     Serial.println("[ha_broker]: " + String(ha_broker));
     Serial.println("[ha_port]: " + String(ha_port));
     Serial.println("[ha_prefix]: " + String(ha_prefix));
+    Serial.println("[ha_expaft]: " + String(ha_expaft));
 #endif
 
     PubSubClient mqttClient;
@@ -114,6 +116,7 @@ void startHassRegister()
         payload["icon"] = "mdi:gesture-tap-button";
         payload.remove("unit_of_meas");
         payload["frc_upd"] = true;
+        payload["exp_aft"] = 1;
         payload["value_template"] = "{{ value_json.button }}";
         for (int i = 0; i < MQTT_PUBLISH_TRIES && !publishTopic(configTopicButton, payload, true, mqttClient); i++)
         {
