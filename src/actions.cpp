@@ -352,6 +352,7 @@ void updateConfigWithDefaults()
     json["ha_broker"] = "homeassistant.local";
     json["ha_port"] = 1883;
     json["ha_prefix"] = "homeassistant";
+    json["ha_expaft"] = 1;
 }
 
 bool saveConfig()

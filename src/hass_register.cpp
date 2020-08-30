@@ -116,7 +116,7 @@ void startHassRegister()
         payload["icon"] = "mdi:gesture-tap-button";
         payload.remove("unit_of_meas");
         payload["frc_upd"] = true;
-        payload["exp_aft"] = 1;
+        payload["exp_aft"] = ha_expaft;
         payload["value_template"] = "{{ value_json.button }}";
         for (int i = 0; i < MQTT_PUBLISH_TRIES && !publishTopic(configTopicButton, payload, true, mqttClient); i++)
         {

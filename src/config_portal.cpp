@@ -209,6 +209,11 @@ void handleRoot(AsyncWebServerRequest *request)
             json["ha_expaft"] = (request->arg("ha_expaft")).toInt();
             Serial.println("Received arg=ha_expaft: " + request->arg("ha_expaft"));
         }
+        else
+        {
+            json["ha_expaft"] = 1;
+            Serial.println("Did not receive arg=ha_expaft.");
+        }
 
         saveConfig();
         Serial.println("Saved new config. Rebooting...");
