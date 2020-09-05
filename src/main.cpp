@@ -306,7 +306,7 @@ void loop()
         setLedColor(0, 0, 255);
         break;
     case 4:
-        setLedColor(0, 255, 255);
+        setLedColor(255, 0, 128);
         break;
     case 5:
         setLedColor(255, 0, 255);
